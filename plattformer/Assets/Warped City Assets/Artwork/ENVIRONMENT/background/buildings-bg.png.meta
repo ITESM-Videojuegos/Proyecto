@@ -1,0 +1,425 @@
+fileFormatVersion: 2
+guid: 37d1bdb3e1de647ae915d01a2b7def15
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5131461394547859242
+    second: buildings-bg_0
+  - first:
+      213: -9169677412270043760
+    second: buildings-bg_1
+  - first:
+      213: -9064334910879685345
+    second: buildings-bg_2
+  - first:
+      213: 5800916576079593782
+    second: buildings-bg_3
+  - first:
+      213: -2348083709870393304
+    second: buildings-bg_4
+  - first:
+      213: -927742778050015822
+    second: buildings-bg_5
+  - first:
+      213: -4823016108424954256
+    second: buildings-bg_6
+  - first:
+      213: 8824920277816117817
+    second: buildings-bg_7
+  - first:
+      213: 2302310717761487182
+    second: buildings-bg_8
+  - first:
+      213: 5945260000351193365
+    second: buildings-bg_9
+  - first:
+      213: -8849729939636028375
+    second: buildings-bg_10
+  - first:
+      213: -2897937332566213302
+    second: buildings-bg_11
+  - first:
+      213: 2315794717685019866
+    second: buildings-bg_12
+  - first:
+      213: -5740241632126439109
+    second: buildings-bg_13
+  - first:
+      213: 9007020494942266674
+    second: buildings-bg_14
+  - first:
+      213: 1632547285900268137
+    second: buildings-bg_15
+  - first:
+      213: -3982444667139866775
+    second: buildings-bg_16
+  - first:
+      213: 5908595619150418155
+    second: buildings-bg_17
+  - first:
+      213: -3870173173230550465
+    second: buildings-bg_18
+  - first:
+      213: 3696119788017389395
+    second: buildings-bg_19
+  - first:
+      213: 8443878093257110079
+    second: buildings-bg_20
+  - first:
+      213: -2044877364019021268
+    second: buildings-bg_21
+  - first:
+      213: 6745782261249277179
+    second: buildings-bg_22
+  - first:
+      213: -2481279779472020227
+    second: buildings-bg_23
+  - first:
+      213: -7034086424138381268
+    second: buildings-bg_24
+  - first:
+      213: 3538618743952189540
+    second: buildings-bg_25
+  - first:
+      213: -8045944632951196998
+    second: buildings-bg_26
+  - first:
+      213: 8239626037674328774
+    second: buildings-bg_27
+  - first:
+      213: -4415970358574255354
+    second: buildings-bg_28
+  - first:
+      213: -3457230588268453523
+    second: buildings-bg_29
+  - first:
+      213: 2457807103165453665
+    second: buildings-bg_30
+  - first:
+      213: 8761417096028744551
+    second: buildings-bg_31
+  - first:
+      213: 8043387081110220881
+    second: buildings-bg_32
+  - first:
+      213: -4642868235491955850
+    second: buildings-bg_33
+  - first:
+      213: -8064425699718980297
+    second: buildings-bg_34
+  - first:
+      213: -2550928308750370548
+    second: buildings-bg_35
+  - first:
+      213: 911700315574854395
+    second: buildings-bg_36
+  - first:
+      213: 4948597332081281170
+    second: buildings-bg_37
+  - first:
+      213: -7912688401381989091
+    second: buildings-bg_38
+  - first:
+      213: 4648246913644176638
+    second: buildings-bg_39
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: buildings-bg_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 92
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2fd7a063fc963740800000000000000
+      internalID: 5131461394547859242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: buildings-bg_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 60
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09d88b00af2ceb080800000000000000
+      internalID: -9169677412270043760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: buildings-bg_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 60
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1528d76c63053280800000000000000
+      internalID: -9064334910879685345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: buildings-bg_3
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 60
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63146e034eef08050800000000000000
+      internalID: 5800916576079593782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: buildings-bg_4
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 60
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8283b4a7e4ee96fd0800000000000000
+      internalID: -2348083709870393304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: buildings-bg_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 28
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bd0567dbdeff13f0800000000000000
+      internalID: -927742778050015822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: buildings-bg_6
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 28
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07ef75f1764311db0800000000000000
+      internalID: -4823016108424954256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: buildings-bg_7
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 28
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93a0f5a7c3a687a70800000000000000
+      internalID: 8824920277816117817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: buildings-bg_8
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 28
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e418fbe466373ff10800000000000000
+      internalID: 2302310717761487182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 817e1d1aec11c4b83bd4fe63c247330e
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
