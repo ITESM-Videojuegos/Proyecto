@@ -4,28 +4,36 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public Rigidbody2D rb;
-    public Animator anim;
+    private Rigidbody2D rb;
+    private Animator anim;
+    private enum State {idle, walking, running, jumping, crouching, climbing, shooting, damaged};
+    private State state = State.idle;
+    private Collider2D coll;
+    [SerializeField] private LayerMask ground;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+        coll = GetComponent<Collider2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Jump or climb
-        if (Input.GetKeyDown(KeyCode.UpArrow)){
-            rb.velocity = new Vector2(rb.velocity.x, 20);
-            anim.SetBool("jumping", true);
+        float hDirection = Input.GetAxis("Horizontal");
+        float vDirection = Input.GetAxis("Vertical");
 
+        //Jump or climb
+        if (Input.GetButtonDown("Jump") && coll.IsTouchingLayers(ground)){
+            rb.velocity = new Vector2(rb.velocity.x, 30);
+            state = State.jumping;
         }
-        else if (Input.GetKeyUp(KeyCode.UpArrow))
+        else if (Input.GetButtonUp("Jump"))
         {
             rb.velocity = new Vector2(rb.velocity.x, -5);
-            anim.SetBool("jumping", false);
+            state = State.idle;
         }
 
 
@@ -34,26 +42,38 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(0, -5);
         }
 
+
         //Left
-        if (Input.GetKey(KeyCode.LeftArrow)){
+        if (hDirection < 0){
             rb.velocity = new Vector2(-5, rb.velocity.y);
             transform.localScale = new Vector2(-1, 1);
-            anim.SetBool("running", true);
-        }else if (Input.GetKeyUp(KeyCode.LeftArrow))
+        }else if (hDirection > 0) //right
         {
-            anim.SetBool("running", false);
-        }
-
-
-        //Right
-        if (Input.GetKey(KeyCode.RightArrow)){
             rb.velocity = new Vector2(5, rb.velocity.y);
             transform.localScale = new Vector2(1, 1);
-            anim.SetBool("running", true);
-        }else if (Input.GetKeyUp(KeyCode.RightArrow))
+        }
+        else
         {
-            anim.SetBool("running", false);
+
         }
 
+        this.StateSwitch();
+        anim.SetInteger("state", (int)state); 
+    }
+
+    private void StateSwitch()
+    {
+        if(state == State.jumping)
+        {
+
+        }else if(Mathf.Abs(rb.velocity.x) > Mathf.Epsilon)
+        {
+            //running
+            state = State.running;
+        }
+        else
+        {
+            state = State.idle;
+        }
     }
 }
