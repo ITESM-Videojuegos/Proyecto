@@ -1,15 +1,32 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Animator anim;
-    private enum State {idle, walking, running, jumping, crouching, climbing, shooting, damaged};
+    private enum State {idle, walking, running, jumping, crouching, climbing, shooting, run_shooting, falling, damaged};
     private State state = State.idle;
     private Collider2D coll;
     [SerializeField] private LayerMask ground;
+    
+
+    private bool facingRight = true;
+
+    [SerializeField] private int health = 100;
+    [SerializeField] private Text healthText;
+    [SerializeField] private int lifes = 3;
+    [SerializeField] private Text LivesText; 
+    [SerializeField] private float damageForce = 15f;
+
+
+    PlayerPos playerPos = new PlayerPos();
+
+    private void Awake()
+    {
+        LivesText.text = lifes.ToString();
+        healthText.text = health.ToString();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -22,11 +39,22 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float hDirection = Input.GetAxis("Horizontal");
-        float vDirection = Input.GetAxis("Vertical");
+        if(state != State.damaged)
+        {
+            this.Movement();
+        }
+        
+        this.StateSwitch();
+        anim.SetInteger("state", (int)state); 
+    }
 
-        //Jump or climb
-        if (Input.GetButtonDown("Jump") && coll.IsTouchingLayers(ground)){
+    private void Movement()
+    {
+        float hDirection = Input.GetAxis("Horizontal");
+
+        //Jump
+        if (Input.GetButtonDown("Jump") && coll.IsTouchingLayers(ground))
+        {
             rb.velocity = new Vector2(rb.velocity.x, 30);
             state = State.jumping;
         }
@@ -35,41 +63,139 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, -5);
             state = State.idle;
         }
-
-
-        //Crouch
-        if (Input.GetKeyDown(KeyCode.DownArrow)){
-            rb.velocity = new Vector2(0, -5);
-        }
-
+        
 
         //Left
-        if (hDirection < 0){
+        if (hDirection < 0)
+        {
             rb.velocity = new Vector2(-5, rb.velocity.y);
-            transform.localScale = new Vector2(-1, 1);
-        }else if (hDirection > 0) //right
+            if (facingRight)
+            {
+                Flip();
+            }
+        }
+        else if (hDirection > 0) //right
         {
             rb.velocity = new Vector2(5, rb.velocity.y);
-            transform.localScale = new Vector2(1, 1);
+            if (!facingRight)
+            {
+                Flip();
+            }
         }
-        else
+
+        //Todo: Crouch
+
+        //Todo: Climbing
+
+        //Shooting
+        if (Input.GetButtonDown("Fire1") && state == State.idle)
         {
-
+            state = State.shooting;
+        }
+        else if (Input.GetButtonUp("Fire1"))
+        {
+            state = State.idle;
         }
 
-        this.StateSwitch();
-        anim.SetInteger("state", (int)state); 
+
+        if (Input.GetButtonDown("Fire1") && state == State.running)
+        {
+            state = State.run_shooting;
+        }
+        else if (Input.GetButtonUp("Fire1"))
+        {
+            state = State.running;
+        }
     }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.tag == "Enemy")
+        {
+            if(state == State.falling)
+            {
+                //Al caer en uno enemigo eliminarlo o hacer daño
+            }
+            else
+            {
+                state = State.damaged;
+                if(other.gameObject.transform.position.x > transform.position.x)
+                {
+                    //Getting bounced left and taking damage
+                    rb.velocity = new Vector2(-damageForce, rb.velocity.y);
+                }
+                else
+                {
+                    //Getting bounced right and taking damage
+                    rb.velocity = new Vector2(damageForce, rb.velocity.y);
+                }
+                TakeDamage(50);
+            }
+        }
+    }
+
+    private void TakeDamage(int damage)
+    {
+        health -= damage;
+        healthText.text = health.ToString();
+        if (health <= 0)
+        {
+            health = 100;
+            healthText.text = health.ToString();
+            Die();
+            
+        }
+    }
+
+    private void Die()
+    {
+        --lifes;
+        LivesText.text = lifes.ToString();
+        playerPos.Respawn();
+        if (lifes == 0)
+        {
+            print("Game over");
+        }
+    }
+
+
+
+
+    private void Flip()
+    {
+        // Cambia a la dirección opuesta
+        facingRight = !facingRight;
+
+        // Rotando al jugador
+        transform.Rotate(0f, 180f, 0f);
+    }
+
+
 
     private void StateSwitch()
     {
+        //Todo: simplificar los if statements
         if(state == State.jumping)
         {
 
+        }else if(state == State.shooting)
+        {
+
+        }else if(state == State.damaged){
+            if(Mathf.Abs(rb.velocity.x) < .1f)
+            {
+                state = State.idle;
+            }
         }else if(Mathf.Abs(rb.velocity.x) > Mathf.Epsilon)
         {
             //running
             state = State.running;
+            if(Input.GetButtonDown("Fire1"))
+            {
+                state = State.run_shooting;
+                print("state: " + state);
+            }
+            
         }
         else
         {

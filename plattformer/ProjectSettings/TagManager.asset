@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - GM
+  - Enemy
+  - Foregorund
   layers:
   - Default
   - TransparentFX
@@ -39,10 +41,16 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background2
+    uniqueID: 2626601869
+    locked: 0
   - name: Background
     uniqueID: 904432567
+    locked: 1
+  - name: Foreground2
+    uniqueID: 3273423277
     locked: 0
-  - name: Forground
+  - name: Foreground
     uniqueID: 2910685307
     locked: 0
   - name: Default
