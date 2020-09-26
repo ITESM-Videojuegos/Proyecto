@@ -1,10 +1,11 @@
 ﻿<Properties StartupConfiguration="{961BF452-D211-3580-4EA8-3F2A3E916965}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PlayerPos.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Bullet.cs">
     <Files>
-      <File FileName="Assets/Scripts/PlayerController.cs" Line="30" Column="32" />
+      <File FileName="Assets/Scripts/PlayerController.cs" Line="120" Column="28" />
+      <File FileName="Assets/Scripts/Bullet.cs" Line="40" Column="34" />
       <File FileName="Assets/Scripts/PlayerPos.cs" Line="28" Column="6" />
-      <File FileName="Assets/Scripts/GameMaster.cs" Line="8" Column="27" />
-      <File FileName="Assets/Scripts/CheckPoint.cs" Line="10" Column="9" />
+      <File FileName="Assets/Scripts/CheckPoint.cs" Line="17" Column="28" />
+      <File FileName="Assets/Scripts/GameMaster.cs" Line="20" Column="33" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -12,7 +13,7 @@
           <Node name="plattformer" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
-                <Node name="PlayerPos.cs" selected="True" />
+                <Node name="Bullet.cs" selected="True" />
               </Node>
             </Node>
           </Node>
