@@ -114,6 +114,12 @@ public class PlayerController : MonoBehaviour
         {
             state = State.running;
         }
+
+        if(rb.position.y < -7f)
+        {
+            print("Death");
+            Die();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
