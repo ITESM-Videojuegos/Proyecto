@@ -3,6 +3,8 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    private GameMaster gm;
+
     private Rigidbody2D rb;
     private Animator anim;
     private enum State {idle, walking, running, jumping, crouching, climbing, shooting, run_shooting, falling, damaged};
@@ -15,7 +17,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private int health = 100;
     [SerializeField] private Text healthText;
-    [SerializeField] private int lifes = 3;
+    [SerializeField] private int lifes = 4;
     [SerializeField] private Text LivesText; 
     [SerializeField] private float damageForce = 15f;
 
@@ -24,8 +26,14 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        LivesText.text = lifes.ToString();
+        gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
+
         healthText.text = health.ToString();
+
+        print("Lifes of player: " + lifes);
+        print(gm.lastCheckPoint);
+        LivesText.text = (gm.playerLifes + lifes).ToString();
+
     }
 
     // Start is called before the first frame update
@@ -106,6 +114,12 @@ public class PlayerController : MonoBehaviour
         {
             state = State.running;
         }
+
+        if(rb.position.y < -7f)
+        {
+            print("Death");
+            Die();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -134,6 +148,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("DeathZone"))
+            Die();
+    }
+
     private void TakeDamage(int damage)
     {
         health -= damage;
@@ -149,10 +169,10 @@ public class PlayerController : MonoBehaviour
 
     private void Die()
     {
-        --lifes;
-        LivesText.text = lifes.ToString();
+        --gm.playerLifes;
+        LivesText.text = (gm.playerLifes + lifes).ToString();
         playerPos.Respawn();
-        if (lifes == 0)
+        if (gm.playerLifes + lifes == 0)
         {
             print("Game over");
         }
