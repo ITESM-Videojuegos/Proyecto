@@ -154,7 +154,7 @@ public class PlayerController : MonoBehaviour
             Die();
     }
 
-    private void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         health -= damage;
         healthText.text = health.ToString();
