@@ -28,7 +28,7 @@ public class EnemyAgro : MonoBehaviour
     void Update()
     {
         float disToPlayer = Vector2.Distance(transform.position, player.position);
-        //print(disToPlayer); 
+        print(disToPlayer); 
 
         if (disToPlayer < agroRange)
         {
@@ -44,19 +44,11 @@ public class EnemyAgro : MonoBehaviour
 
     void ShootPlayer()
     {
-        if (transform.position.x < player.position.x)
-        {
-            ef.Shoot();
-
-        }
-        else
-        {
-            ef.Shoot();
-        }
+        print("/");
     }
 
     void StopShootingPlayer()
     {
-        ef.shoot = false;
+        print('/');
     }
 }
