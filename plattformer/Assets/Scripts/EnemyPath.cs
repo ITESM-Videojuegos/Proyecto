@@ -22,7 +22,7 @@ public class EnemyPath : MonoBehaviour
         {
             current += 1;
             current %= 2;
-            transform.Rotate(0f, 180f, 0f);
+            //transform.Rotate(0f, 180f, 0f);
         }
     }
 }
