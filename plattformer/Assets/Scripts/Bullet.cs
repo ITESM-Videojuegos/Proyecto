@@ -11,13 +11,13 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       rb.velocity = transform.right * speed;
+        rb.velocity = transform.right * speed;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -32,7 +32,8 @@ public class Bullet : MonoBehaviour
         {
             enemy.takeDamage(damage);
             Destroy(gameObject);
-        }else if(other.gameObject.tag != "Respawn")
+        }
+        else if (other.gameObject.tag != "Respawn")
         {
             Destroy(gameObject);
         }

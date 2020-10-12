@@ -7,18 +7,18 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb;
     private Animator anim;
-    private enum State {idle, walking, running, jumping, crouching, climbing, shooting, run_shooting, falling, damaged};
+    private enum State { idle, walking, running, jumping, crouching, climbing, shooting, run_shooting, falling, damaged };
     private State state = State.idle;
     private Collider2D coll;
     [SerializeField] private LayerMask ground;
-    
+
 
     private bool facingRight = true;
 
     [SerializeField] private int health = 100;
     [SerializeField] private Text healthText;
     [SerializeField] private int lifes = 4;
-    [SerializeField] private Text LivesText; 
+    [SerializeField] private Text LivesText;
     [SerializeField] private float damageForce = 15f;
 
 
@@ -47,13 +47,13 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(state != State.damaged)
+        if (state != State.damaged)
         {
             this.Movement();
         }
-        
+
         this.StateSwitch();
-        anim.SetInteger("state", (int)state); 
+        anim.SetInteger("state", (int)state);
     }
 
     private void Movement()
@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, -5);
             state = State.idle;
         }
-        
+
 
         //Left
         if (hDirection < 0)
@@ -115,7 +115,7 @@ public class PlayerController : MonoBehaviour
             state = State.running;
         }
 
-        if(rb.position.y < -7f)
+        if (rb.position.y < -7f)
         {
             print("Death");
             Die();
@@ -124,16 +124,16 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "Enemy")
         {
-            if(state == State.falling)
+            if (state == State.falling)
             {
                 //Al caer en uno enemigo eliminarlo o hacer daño
             }
             else
             {
                 state = State.damaged;
-                if(other.gameObject.transform.position.x > transform.position.x)
+                if (other.gameObject.transform.position.x > transform.position.x)
                 {
                     //Getting bounced left and taking damage
                     rb.velocity = new Vector2(-damageForce, rb.velocity.y);
@@ -163,7 +163,7 @@ public class PlayerController : MonoBehaviour
             health = 100;
             healthText.text = health.ToString();
             Die();
-            
+
         }
     }
 
@@ -195,27 +195,31 @@ public class PlayerController : MonoBehaviour
     private void StateSwitch()
     {
         //Todo: simplificar los if statements
-        if(state == State.jumping)
+        if (state == State.jumping)
         {
 
-        }else if(state == State.shooting)
+        }
+        else if (state == State.shooting)
         {
 
-        }else if(state == State.damaged){
-            if(Mathf.Abs(rb.velocity.x) < .1f)
+        }
+        else if (state == State.damaged)
+        {
+            if (Mathf.Abs(rb.velocity.x) < .1f)
             {
                 state = State.idle;
             }
-        }else if(Mathf.Abs(rb.velocity.x) > Mathf.Epsilon)
+        }
+        else if (Mathf.Abs(rb.velocity.x) > Mathf.Epsilon)
         {
             //running
             state = State.running;
-            if(Input.GetButtonDown("Fire1"))
+            if (Input.GetButtonDown("Fire1"))
             {
                 state = State.run_shooting;
                 print("state: " + state);
             }
-            
+
         }
         else
         {

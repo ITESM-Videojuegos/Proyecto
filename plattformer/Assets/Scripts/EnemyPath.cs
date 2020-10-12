@@ -21,7 +21,7 @@ public class EnemyPath : MonoBehaviour
         if (Mathf.Abs(transform.position.x - path[current].transform.position.x) < 0.5)
         {
             current += 1;
-            current %= 2;
+            current %= path.Length;
             //transform.Rotate(0f, 180f, 0f);
         }
     }
