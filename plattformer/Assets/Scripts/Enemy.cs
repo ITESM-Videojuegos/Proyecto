@@ -5,12 +5,13 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     private int health = 100;
+    private Animator anim;
     //private GameObject deathEffect;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -29,7 +30,7 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
-        //Instantiate(deathEffect, transform.position, Quaternion.identity);
+        anim.SetTrigger("Death");
         Destroy(gameObject);
     }
 }
