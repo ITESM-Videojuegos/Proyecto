@@ -6,31 +6,28 @@ public class Enemy : MonoBehaviour
 {
     private int health = 100;
     private Animator anim;
-    //private GameObject deathEffect;
+    private Rigidbody2D rb;
 
-    // Start is called before the first frame update
+
     void Start()
     {
         anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    public void takeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         health -= damage;
-
         if (health <= 0)
-            Die();
+        {
+            anim.SetTrigger("Death");
+            rb.velocity = Vector2.zero;
+        }
+            
     }
 
     private void Die()
     {
-        anim.SetTrigger("Death");
         Destroy(gameObject);
     }
 }

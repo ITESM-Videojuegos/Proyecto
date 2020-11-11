@@ -1,5 +1,33 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &2155074320638213538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3010984571460574560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adaf9e25f432e4e229ff57167c09ff14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1289594504331114242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3010984571460574560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d09fdd6cf230840ccb21e7f026151fa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyFirePoint: {fileID: 0}
+  bullet: {fileID: 0}
+  player: {fileID: 0}
+  agroRange: 0
 --- !u!1 &2817629605918191297
 GameObject:
   m_ObjectHideFlags: 0
@@ -40,7 +68,7 @@ PrefabInstance:
     - target: {fileID: 2889752854959082180, guid: e67552d43b86741abbe8b55ce09af07e,
         type: 3}
       propertyPath: m_Name
-      value: turret
+      value: SmartTurret
       objectReference: {fileID: 0}
     - target: {fileID: 2889752854959082187, guid: e67552d43b86741abbe8b55ce09af07e,
         type: 3}
@@ -99,6 +127,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e67552d43b86741abbe8b55ce09af07e, type: 3}
+--- !u!1 &3010984571460574560 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2889752854959082180, guid: e67552d43b86741abbe8b55ce09af07e,
+    type: 3}
+  m_PrefabInstance: {fileID: 131550428597262244}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3010984571460574575 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2889752854959082187, guid: e67552d43b86741abbe8b55ce09af07e,

@@ -23,17 +23,12 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         Enemy enemy = other.GetComponent<Enemy>();
-        //if(enemy != null)
-        //{
-        //    enemy.takeDamage(damage);
-        //    Destroy(gameObject);
-        //}
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.CompareTag("Enemy"))
         {
-            enemy.takeDamage(damage);
+            enemy.TakeDamage(damage);
             Destroy(gameObject);
         }
-        else if (other.gameObject.tag != "Respawn")
+        else if (!other.gameObject.CompareTag("Respawn"))
         {
             Destroy(gameObject);
         }

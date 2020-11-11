@@ -9,17 +9,26 @@ public class PlayerController : MonoBehaviour
     private Animator anim;
     private enum State { idle, walking, running, jumping, crouching, climbing, shooting, run_shooting, falling, damaged };
     private State state = State.idle;
-    private Collider2D coll;
+    [SerializeField] Collider2D normalColl;
+    [SerializeField] Collider2D crouchColl;
     [SerializeField] private LayerMask ground;
 
 
     private bool facingRight = true;
+    private bool isTouchingGround = true;
 
+    //ladder vars
+    [HideInInspector] public bool canClimb = false;
+    private float naturalGravity;
+    [SerializeField] float climbSpeed = 3f;
+    [SerializeField] private float rayDistance;
+    [SerializeField] private LayerMask whatIsLadder;
     [SerializeField] private int health = 100;
     [SerializeField] private Text healthText;
     [SerializeField] private int lifes = 4;
     [SerializeField] private Text LivesText;
     [SerializeField] private float damageForce = 15f;
+
 
 
     PlayerPos playerPos = new PlayerPos();
@@ -30,8 +39,6 @@ public class PlayerController : MonoBehaviour
 
         healthText.text = health.ToString();
 
-        print("Lifes of player: " + lifes);
-        print(gm.lastCheckPoint);
         LivesText.text = (gm.playerLifes + lifes).ToString();
 
     }
@@ -41,17 +48,31 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        coll = GetComponent<Collider2D>();
+        crouchColl.enabled = false;
+        naturalGravity = rb.gravityScale;
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector2.up, whatIsLadder);
+
+    
+        if (hitInfo.collider.tag == "Ladder" && Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow)){
+            canClimb = true;
+            Climb(canClimb);
+        }
+        else
+        {
+            canClimb = false;
+            Climb(canClimb);
+        }
+
         if (state != State.damaged)
         {
             this.Movement();
         }
-
         this.StateSwitch();
         anim.SetInteger("state", (int)state);
     }
@@ -59,11 +80,14 @@ public class PlayerController : MonoBehaviour
     private void Movement()
     {
         float hDirection = Input.GetAxis("Horizontal");
+        if (normalColl.IsTouchingLayers(ground))
+            isTouchingGround = true;
 
         //Jump
-        if (Input.GetButtonDown("Jump") && coll.IsTouchingLayers(ground))
+        if (Input.GetButtonDown("Jump") && isTouchingGround)
         {
             rb.velocity = new Vector2(rb.velocity.x, 30);
+            isTouchingGround = false;
             state = State.jumping;
         }
         else if (Input.GetButtonUp("Jump"))
@@ -72,6 +96,23 @@ public class PlayerController : MonoBehaviour
             state = State.idle;
         }
 
+        //Crouch
+        if (Input.GetButtonDown("Crouch") && isTouchingGround)
+        {
+            normalColl.enabled = false;
+            crouchColl.enabled = true;
+            state = State.crouching;
+            if (Mathf.Abs(rb.velocity.x) > .1f)
+            {
+                state = State.running;
+            }
+        }
+        else if (Input.GetButtonUp("Crouch"))
+        {
+            normalColl.enabled = true;
+            crouchColl.enabled = false;
+            state = State.idle;
+        }
 
         //Left
         if (hDirection < 0)
@@ -91,9 +132,6 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        //Todo: Crouch
-
-        //Todo: Climbing
 
         //Shooting
         if (Input.GetButtonDown("Fire1") && state == State.idle)
@@ -117,7 +155,6 @@ public class PlayerController : MonoBehaviour
 
         if (rb.position.y < -7f)
         {
-            print("Death");
             Die();
         }
     }
@@ -148,10 +185,19 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void Climb(bool canClimb)
     {
-        if (other.CompareTag("DeathZone"))
-            Die();
+
+        if (canClimb)
+        {
+            rb.gravityScale = 0;
+            float vDirection = Input.GetAxis("Vertical");
+            rb.velocity = new Vector2(rb.position.x, vDirection * climbSpeed);
+        }
+        else
+        {
+            rb.gravityScale = naturalGravity;
+        }
     }
 
     public void TakeDamage(int damage)
@@ -163,7 +209,6 @@ public class PlayerController : MonoBehaviour
             health = 100;
             healthText.text = health.ToString();
             Die();
-
         }
     }
 
@@ -196,6 +241,14 @@ public class PlayerController : MonoBehaviour
     {
         //Todo: simplificar los if statements
         if (state == State.jumping)
+        {
+
+        }
+        else if (state == State.crouching)
+        {
+
+        }
+        else if (state == State.climbing)
         {
 
         }
