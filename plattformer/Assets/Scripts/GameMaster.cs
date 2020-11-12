@@ -21,4 +21,10 @@ public class GameMaster : MonoBehaviour
         }
     }
 
+
+    public void Start()
+    {
+        
+    }
+
 }

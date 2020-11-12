@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
@@ -15,12 +16,12 @@ public class PlayerController : MonoBehaviour
 
 
     private bool facingRight = true;
-    private bool isTouchingGround = true;
+    private bool canShoot = true;
 
     //ladder vars
     [HideInInspector] public bool canClimb = false;
     private float naturalGravity;
-    [SerializeField] float climbSpeed = 3f;
+    [SerializeField] private float climbSpeed = 30f;
     [SerializeField] private float rayDistance;
     [SerializeField] private LayerMask whatIsLadder;
     [SerializeField] private int health = 100;
@@ -28,7 +29,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int lifes = 4;
     [SerializeField] private Text LivesText;
     [SerializeField] private float damageForce = 15f;
-
+    
 
 
     PlayerPos playerPos = new PlayerPos();
@@ -37,8 +38,8 @@ public class PlayerController : MonoBehaviour
     {
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
 
+        //Text of the canvas
         healthText.text = health.ToString();
-
         LivesText.text = (gm.playerLifes + lifes).ToString();
 
     }
@@ -56,19 +57,6 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 
-        RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector2.up, whatIsLadder);
-
-    
-        if (hitInfo.collider.tag == "Ladder" && Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow)){
-            canClimb = true;
-            Climb(canClimb);
-        }
-        else
-        {
-            canClimb = false;
-            Climb(canClimb);
-        }
-
         if (state != State.damaged)
         {
             this.Movement();
@@ -80,14 +68,32 @@ public class PlayerController : MonoBehaviour
     private void Movement()
     {
         float hDirection = Input.GetAxis("Horizontal");
-        if (normalColl.IsTouchingLayers(ground))
-            isTouchingGround = true;
+        RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector2.up, whatIsLadder);
+
+        try { 
+            if (hitInfo.collider.CompareTag("Ladder")
+                && (Input.GetKey(KeyCode.UpArrow)
+                || Input.GetKey(KeyCode.DownArrow)))
+            {
+                print(hitInfo.collider);
+                    state = State.climbing;
+                    canClimb = true;
+                    Climb(canClimb);
+            }
+            else
+            {
+                canClimb = false;
+                Climb(canClimb);
+            }
+        }catch(NullReferenceException ex)
+        {
+            Debug.Log("No pasa nada");
+        }
 
         //Jump
-        if (Input.GetButtonDown("Jump") && isTouchingGround)
+        if (Input.GetButtonDown("Jump") && normalColl.IsTouchingLayers(ground))
         {
             rb.velocity = new Vector2(rb.velocity.x, 30);
-            isTouchingGround = false;
             state = State.jumping;
         }
         else if (Input.GetButtonUp("Jump"))
@@ -97,15 +103,11 @@ public class PlayerController : MonoBehaviour
         }
 
         //Crouch
-        if (Input.GetButtonDown("Crouch") && isTouchingGround)
+        if (Input.GetButton("Crouch") && normalColl.IsTouchingLayers(ground))
         {
             normalColl.enabled = false;
             crouchColl.enabled = true;
             state = State.crouching;
-            if (Mathf.Abs(rb.velocity.x) > .1f)
-            {
-                state = State.running;
-            }
         }
         else if (Input.GetButtonUp("Crouch"))
         {
@@ -119,23 +121,20 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = new Vector2(-5, rb.velocity.y);
             if (facingRight)
-            {
                 Flip();
-            }
         }
         else if (hDirection > 0) //right
         {
             rb.velocity = new Vector2(5, rb.velocity.y);
             if (!facingRight)
-            {
                 Flip();
-            }
         }
 
 
         //Shooting
-        if (Input.GetButtonDown("Fire1") && state == State.idle)
+        if (Input.GetButtonDown("Fire1"))
         {
+            FindObjectOfType<AudioManager>().Play("playerShoot");
             state = State.shooting;
         }
         else if (Input.GetButtonUp("Fire1"))
@@ -143,65 +142,53 @@ public class PlayerController : MonoBehaviour
             state = State.idle;
         }
 
-
-        if (Input.GetButtonDown("Fire1") && state == State.running)
-        {
-            state = State.run_shooting;
-        }
-        else if (Input.GetButtonUp("Fire1"))
-        {
-            state = State.running;
-        }
-
         if (rb.position.y < -7f)
         {
             Die();
         }
+
+        anim.SetInteger("state", (int)state);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.CompareTag("Enemy"))
         {
-            if (state == State.falling)
+            if (other.gameObject.transform.position.x > transform.position.x)
             {
-                //Al caer en uno enemigo eliminarlo o hacer daño
+                //Getting bounced left and taking damage
+                rb.velocity = new Vector2(-damageForce, rb.velocity.y);
             }
             else
             {
-                state = State.damaged;
-                if (other.gameObject.transform.position.x > transform.position.x)
-                {
-                    //Getting bounced left and taking damage
-                    rb.velocity = new Vector2(-damageForce, rb.velocity.y);
-                }
-                else
-                {
-                    //Getting bounced right and taking damage
-                    rb.velocity = new Vector2(damageForce, rb.velocity.y);
-                }
-                TakeDamage(50);
+                //Getting bounced right and taking damage
+                rb.velocity = new Vector2(damageForce, rb.velocity.y);
             }
+            TakeDamage(50);
         }
     }
 
     private void Climb(bool canClimb)
     {
-
         if (canClimb)
         {
+            state = State.climbing;
             rb.gravityScale = 0;
             float vDirection = Input.GetAxis("Vertical");
-            rb.velocity = new Vector2(rb.position.x, vDirection * climbSpeed);
+            rb.constraints = RigidbodyConstraints2D.FreezePositionX;
+            rb.velocity = new Vector2(0, vDirection * climbSpeed);
         }
         else
         {
+            state = State.idle;
             rb.gravityScale = naturalGravity;
         }
     }
 
     public void TakeDamage(int damage)
     {
+        FindObjectOfType<AudioManager>().Play("playerDeath");
+        state = State.damaged;
         health -= damage;
         healthText.text = health.ToString();
         if (health <= 0)
@@ -214,6 +201,7 @@ public class PlayerController : MonoBehaviour
 
     private void Die()
     {
+        FindObjectOfType<AudioManager>().Play("playerDeath");
         --gm.playerLifes;
         LivesText.text = (gm.playerLifes + lifes).ToString();
         playerPos.Respawn();
@@ -223,30 +211,24 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
-
-
     private void Flip()
     {
-        // Cambia a la dirección opuesta
+        // Changes to the opposite direction
         facingRight = !facingRight;
-
-        // Rotando al jugador
+        // rotate the whole player prefab
         transform.Rotate(0f, 180f, 0f);
     }
 
-
-
+    //Runs code in different states of the player
     private void StateSwitch()
     {
-        //Todo: simplificar los if statements
         if (state == State.jumping)
         {
 
         }
         else if (state == State.crouching)
         {
-
+            rb.constraints = RigidbodyConstraints2D.FreezePositionX;
         }
         else if (state == State.climbing)
         {
@@ -254,6 +236,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (state == State.shooting)
         {
+            rb.constraints = RigidbodyConstraints2D.FreezePositionX;
 
         }
         else if (state == State.damaged)
@@ -265,18 +248,14 @@ public class PlayerController : MonoBehaviour
         }
         else if (Mathf.Abs(rb.velocity.x) > Mathf.Epsilon)
         {
-            //running
             state = State.running;
-            if (Input.GetButtonDown("Fire1"))
-            {
-                state = State.run_shooting;
-                print("state: " + state);
-            }
-
+            //FindObjectOfType<AudioManager>().Play("walking");
         }
         else
         {
             state = State.idle;
+            rb.constraints = RigidbodyConstraints2D.None;
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
     }
 }

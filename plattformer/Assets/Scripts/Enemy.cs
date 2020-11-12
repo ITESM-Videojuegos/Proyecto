@@ -28,6 +28,7 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
+        FindObjectOfType<AudioManager>().Play("enemyExplosion");
         Destroy(gameObject);
     }
 }
