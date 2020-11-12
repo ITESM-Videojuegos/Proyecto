@@ -16,7 +16,6 @@ public class PlayerController : MonoBehaviour
 
 
     private bool facingRight = true;
-    private bool canShoot = true;
 
     //ladder vars
     [HideInInspector] public bool canClimb = false;
@@ -132,9 +131,9 @@ public class PlayerController : MonoBehaviour
 
 
         //Shooting
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButton("Fire1"))
         {
-            FindObjectOfType<AudioManager>().Play("playerShoot");
+
             state = State.shooting;
         }
         else if (Input.GetButtonUp("Fire1"))
@@ -246,10 +245,9 @@ public class PlayerController : MonoBehaviour
                 state = State.idle;
             }
         }
-        else if (Mathf.Abs(rb.velocity.x) > Mathf.Epsilon)
+        else if (Mathf.Abs(rb.velocity.x) > .01f)
         {
             state = State.running;
-            //FindObjectOfType<AudioManager>().Play("walking");
         }
         else
         {
