@@ -32,7 +32,7 @@ public class EnemyAgro : MonoBehaviour
 
         if (disToPlayer < agroRange)
         {
-
+            
             ShootPlayer();
 
         }

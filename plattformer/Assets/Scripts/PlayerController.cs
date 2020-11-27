@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     private GameMaster gm;
+    private PlayerPos playerPos;
 
     private Rigidbody2D rb;
     private Animator anim;
@@ -19,23 +20,26 @@ public class PlayerController : MonoBehaviour
 
     //ladder vars
     [HideInInspector] public bool canClimb = false;
+    [HideInInspector] public bool isCrouching = false;
+    [HideInInspector] public bool grounded = true;
     private float naturalGravity;
     [SerializeField] private float climbSpeed = 30f;
     [SerializeField] private float rayDistance;
     [SerializeField] private LayerMask whatIsLadder;
     [SerializeField] private int health = 100;
     [SerializeField] private Text healthText;
-    [SerializeField] private int lifes = 4;
+    [SerializeField] private int lifes;
     [SerializeField] private Text LivesText;
     [SerializeField] private float damageForce = 15f;
     
 
 
-    PlayerPos playerPos = new PlayerPos();
+    
 
     private void Awake()
     {
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
+        //playerPos = GameObject.GetComponent<PlayerPos>;
 
         //Text of the canvas
         healthText.text = health.ToString();
@@ -43,7 +47,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    // Start is called before the first frame update
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -52,7 +56,7 @@ public class PlayerController : MonoBehaviour
         naturalGravity = rb.gravityScale;
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
 
@@ -74,7 +78,6 @@ public class PlayerController : MonoBehaviour
                 && (Input.GetKey(KeyCode.UpArrow)
                 || Input.GetKey(KeyCode.DownArrow)))
             {
-                print(hitInfo.collider);
                     state = State.climbing;
                     canClimb = true;
                     Climb(canClimb);
@@ -86,32 +89,34 @@ public class PlayerController : MonoBehaviour
             }
         }catch(NullReferenceException ex)
         {
-            Debug.Log("No pasa nada");
+            
         }
 
         //Jump
-        if (Input.GetButtonDown("Jump") && normalColl.IsTouchingLayers(ground))
+        if (Input.GetButtonDown("Jump") && grounded)
         {
             rb.velocity = new Vector2(rb.velocity.x, 30);
             state = State.jumping;
         }
-        else if (Input.GetButtonUp("Jump"))
+        else if (Input.GetButtonUp("Jump") && grounded)
         {
             rb.velocity = new Vector2(rb.velocity.x, -5);
             state = State.idle;
         }
 
         //Crouch
-        if (Input.GetButton("Crouch") && normalColl.IsTouchingLayers(ground))
+        if (Input.GetButton("Crouch") && grounded)
         {
             normalColl.enabled = false;
             crouchColl.enabled = true;
+            isCrouching = true;
             state = State.crouching;
         }
         else if (Input.GetButtonUp("Crouch"))
         {
             normalColl.enabled = true;
             crouchColl.enabled = false;
+            isCrouching = false;
             state = State.idle;
         }
 
@@ -174,7 +179,7 @@ public class PlayerController : MonoBehaviour
             state = State.climbing;
             rb.gravityScale = 0;
             float vDirection = Input.GetAxis("Vertical");
-            rb.constraints = RigidbodyConstraints2D.FreezePositionX;
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
             rb.velocity = new Vector2(0, vDirection * climbSpeed);
         }
         else
@@ -203,11 +208,16 @@ public class PlayerController : MonoBehaviour
         FindObjectOfType<AudioManager>().Play("playerDeath");
         --gm.playerLifes;
         LivesText.text = (gm.playerLifes + lifes).ToString();
-        playerPos.Respawn();
         if (gm.playerLifes + lifes == 0)
         {
-            print("Game over");
+            gm.EndGame();
+            gm.playerLifes = lifes;
         }
+        else
+        {
+            playerPos.Respawn();
+        }
+        
     }
 
     private void Flip()
@@ -241,9 +251,7 @@ public class PlayerController : MonoBehaviour
         else if (state == State.damaged)
         {
             if (Mathf.Abs(rb.velocity.x) < .1f)
-            {
                 state = State.idle;
-            }
         }
         else if (Mathf.Abs(rb.velocity.x) > .01f)
         {

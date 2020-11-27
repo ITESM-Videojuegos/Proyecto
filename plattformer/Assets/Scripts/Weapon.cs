@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public Transform firePoint;
-    public GameObject bullet;
+    [SerializeField] private Transform firePoint;
+    [SerializeField] private Transform firePointCrouch;
+    [SerializeField] private GameObject bullet;
     private bool canShoot = true;
+    private PlayerController player;
+
+    private void Awake()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -21,10 +28,12 @@ public class Weapon : MonoBehaviour
     }
 
     private void Shoot()
-    {
-        //Logica de disparo
+    {        
         FindObjectOfType<AudioManager>().Play("playerShoot");
-        Instantiate(bullet, firePoint.position, firePoint.rotation);
+        if(!player.isCrouching)
+            Instantiate(bullet, firePoint.position, firePoint.rotation);
+        else
+            Instantiate(bullet, firePointCrouch.position, firePoint.rotation);
         StartCoroutine(ShootWait());
     }
 

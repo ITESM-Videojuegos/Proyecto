@@ -14,9 +14,10 @@ public class EnemyFire : MonoBehaviour
     Boolean bandera;
 
     [SerializeField]
-    float agroRange;
+    private float agroRange;
+    private float disToPlayer;
+    private bool facingRight = true;
 
-    float disToPlayer;
 
     private IEnumerator enumerador;
     private Coroutine corrutina;
@@ -31,12 +32,25 @@ public class EnemyFire : MonoBehaviour
     {
         
         disToPlayer = Vector2.Distance(transform.position, player.position);
-        
+
         if (disToPlayer < agroRange && bandera)
         {
-            corrutina = StartCoroutine(enumerador);
-            bandera = false;
-            
+            if (player.transform.position.x - transform.position.x < 0 && facingRight){
+                transform.Rotate(0f, 180f, 0f);
+                corrutina = StartCoroutine(enumerador);
+                bandera = false;
+                facingRight = false;
+            }
+            else if (player.transform.position.x - transform.position.x > 0 && !facingRight){
+                transform.Rotate(0f, 180f, 0f);
+                corrutina = StartCoroutine(enumerador);
+                bandera = false;
+                facingRight = true;
+            }
+            else{
+                corrutina = StartCoroutine(enumerador);
+                bandera = false;
+            }
         }
         else if (disToPlayer > agroRange && !bandera)
         {

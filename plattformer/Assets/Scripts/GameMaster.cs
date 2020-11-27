@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameMaster : MonoBehaviour
 {
@@ -22,9 +23,10 @@ public class GameMaster : MonoBehaviour
     }
 
 
-    public void Start()
+
+    public void EndGame()
     {
-        
+        SceneManager.LoadScene("GameOver");
     }
 
 }

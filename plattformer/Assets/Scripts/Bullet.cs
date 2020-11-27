@@ -8,16 +8,10 @@ public class Bullet : MonoBehaviour
     private float speed = 20f;
     private int damage = 50;
     public Rigidbody2D rb;
-    // Start is called before the first frame update
+    
     void Start()
     {
         rb.velocity = transform.right * speed;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -28,7 +22,7 @@ public class Bullet : MonoBehaviour
             enemy.TakeDamage(damage);
             Destroy(gameObject);
         }
-        else if (!other.gameObject.CompareTag("Respawn"))
+        else if (other.gameObject.CompareTag("Foregorund"))
         {
             Destroy(gameObject);
         }
