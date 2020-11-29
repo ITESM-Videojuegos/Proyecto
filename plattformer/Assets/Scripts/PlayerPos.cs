@@ -26,4 +26,6 @@ public class PlayerPos : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+    
 }

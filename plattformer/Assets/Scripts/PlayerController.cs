@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     private GameMaster gm;
-    private PlayerPos playerPos;
+    PlayerPos playerPos = new PlayerPos();
 
     private Rigidbody2D rb;
     private Animator anim;
@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     //ladder vars
     [HideInInspector] public bool canClimb = false;
     [HideInInspector] public bool isCrouching = false;
-    [HideInInspector] public bool grounded = true;
+    [HideInInspector] public bool grounded = false;
     private float naturalGravity;
     [SerializeField] private float climbSpeed = 30f;
     [SerializeField] private float rayDistance;
@@ -168,7 +168,7 @@ public class PlayerController : MonoBehaviour
                 //Getting bounced right and taking damage
                 rb.velocity = new Vector2(damageForce, rb.velocity.y);
             }
-            TakeDamage(50);
+            TakeDamage(20);
         }
     }
 

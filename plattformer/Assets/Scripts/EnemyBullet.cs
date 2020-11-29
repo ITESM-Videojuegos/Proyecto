@@ -6,7 +6,7 @@ public class EnemyBullet : MonoBehaviour
 {
 
     private float speed = 300f;
-    private int damage = 50;
+    private int damage = 20;
     public Rigidbody2D rb;
 
     public Transform player;
