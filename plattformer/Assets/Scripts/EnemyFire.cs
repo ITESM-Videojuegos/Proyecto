@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditorInternal;
 using UnityEngine;
 
 public class EnemyFire : MonoBehaviour
@@ -11,7 +9,7 @@ public class EnemyFire : MonoBehaviour
     
     public Transform player;
 
-    Boolean bandera;
+    bool bandera;
 
     [SerializeField]
     private float agroRange;

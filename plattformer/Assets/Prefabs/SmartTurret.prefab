@@ -42,6 +42,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adaf9e25f432e4e229ff57167c09ff14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &1289594504331114242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,6 +71,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adaf9e25f432e4e229ff57167c09ff14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &131550428597262244
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -80,7 +82,7 @@ PrefabInstance:
     - target: {fileID: 2889752854959082180, guid: e67552d43b86741abbe8b55ce09af07e,
         type: 3}
       propertyPath: m_Name
-      value: SmartTurret (1)
+      value: SmartTurret (0)
       objectReference: {fileID: 0}
     - target: {fileID: 2889752854959082185, guid: e67552d43b86741abbe8b55ce09af07e,
         type: 3}
@@ -110,12 +112,12 @@ PrefabInstance:
     - target: {fileID: 2889752854959082187, guid: e67552d43b86741abbe8b55ce09af07e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.5717964
+      value: -40.86
       objectReference: {fileID: 0}
     - target: {fileID: 2889752854959082187, guid: e67552d43b86741abbe8b55ce09af07e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -9.276
+      value: -12.57
       objectReference: {fileID: 0}
     - target: {fileID: 2889752854959082187, guid: e67552d43b86741abbe8b55ce09af07e,
         type: 3}
