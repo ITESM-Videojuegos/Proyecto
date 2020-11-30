@@ -1,17 +1,22 @@
 ﻿<Properties StartupConfiguration="{961BF452-D211-3580-4EA8-3F2A3E916965}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Menu.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Enemy.cs">
     <Files>
-      <File FileName="Assets/Scripts/PlayerController.cs" Line="8" Column="5" />
-      <File FileName="Assets/Scripts/PlayerPos.cs" Line="27" Column="74" />
-      <File FileName="Assets/Scripts/Menu.cs" Line="19" Column="48" />
+      <File FileName="Assets/Scripts/Spawner.cs" Line="7" Column="34" />
+      <File FileName="Assets/Scripts/Counter.cs" Line="2" Column="35" />
+      <File FileName="Assets/Scripts/Menu.cs" Line="18" Column="9" />
+      <File FileName="Assets/Scripts/PlayerPos.cs" Line="6" Column="5" />
+      <File FileName="Assets/Scripts/Enemy.cs" Line="10" Column="15" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="plattformer" expanded="True">
             <Node name="Assets" expanded="True">
+              <Node name="AstarPathfindingProject" expanded="True">
+                <Node name="Behaviors" expanded="True" />
+              </Node>
               <Node name="Scripts" expanded="True">
-                <Node name="Menu.cs" selected="True" />
+                <Node name="Enemy.cs" selected="True" />
               </Node>
             </Node>
           </Node>

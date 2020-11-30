@@ -12,6 +12,8 @@ TagManager:
   - Ground
   - Map
   - StartPos
+  - Spawner
+  - Counter
   layers:
   - Default
   - TransparentFX
