@@ -121,6 +121,59 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &46900526
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 46900528}
+  - component: {fileID: 46900527}
+  m_Layer: 0
+  m_Name: Spawner (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &46900527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 46900526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7c0c151c6344ea5b4aad9d13f5e727, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  treePrefab: {fileID: 1233692002419998760, guid: 08ff9deaaae6c4a3d8fea64fb533f42b,
+    type: 3}
+  spxMin: -2.1
+  spxMax: 2.35
+  spyPos: 0.85
+  spawnTime: 5
+  respawnTime: 0
+  respawnTimeMin: 8
+  respawnTimeMax: 14
+  stop: 0
+--- !u!4 &46900528
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 46900526}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.37, y: -5.26, z: -1366.5426}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &98838011 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6301984919526566865, guid: da1a94f0d02884b7885aac0138718079,
@@ -361,7 +414,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &350672657
 GameObject:
@@ -1974,6 +2027,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesKilled: 0
+  enemiesToKill: 10
 --- !u!4 &728208813
 Transform:
   m_ObjectHideFlags: 0
@@ -2051,7 +2105,7 @@ PrefabInstance:
     - target: {fileID: 6301984919526566865, guid: da1a94f0d02884b7885aac0138718079,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6301984919526566865, guid: da1a94f0d02884b7885aac0138718079,
         type: 3}
@@ -2308,7 +2362,7 @@ MonoBehaviour:
   spawnTime: 2
   respawnTime: 0
   respawnTimeMin: 5
-  respawnTimeMax: 8
+  respawnTimeMax: 10
   stop: 0
 --- !u!4 &1088296254
 Transform:
@@ -2632,7 +2686,7 @@ Transform:
   m_Children:
   - {fileID: 1456310575}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1477355611
 MonoBehaviour:
@@ -3042,7 +3096,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1915161724}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -6, y: -3.9, z: -12.0105915}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -3541,3 +3595,77 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1233692001192764224
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1233692000941641460, guid: 08ff9deaaae6c4a3d8fea64fb533f42b,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 98838011}
+    - target: {fileID: 1233692002419998760, guid: 08ff9deaaae6c4a3d8fea64fb533f42b,
+        type: 3}
+      propertyPath: m_Name
+      value: DroneGod
+      objectReference: {fileID: 0}
+    - target: {fileID: 1233692002419998761, guid: 08ff9deaaae6c4a3d8fea64fb533f42b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.86
+      objectReference: {fileID: 0}
+    - target: {fileID: 1233692002419998761, guid: 08ff9deaaae6c4a3d8fea64fb533f42b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.86
+      objectReference: {fileID: 0}
+    - target: {fileID: 1233692002419998761, guid: 08ff9deaaae6c4a3d8fea64fb533f42b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1366.5426
+      objectReference: {fileID: 0}
+    - target: {fileID: 1233692002419998761, guid: 08ff9deaaae6c4a3d8fea64fb533f42b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1233692002419998761, guid: 08ff9deaaae6c4a3d8fea64fb533f42b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1233692002419998761, guid: 08ff9deaaae6c4a3d8fea64fb533f42b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1233692002419998761, guid: 08ff9deaaae6c4a3d8fea64fb533f42b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1233692002419998761, guid: 08ff9deaaae6c4a3d8fea64fb533f42b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1233692002419998761, guid: 08ff9deaaae6c4a3d8fea64fb533f42b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1233692002419998761, guid: 08ff9deaaae6c4a3d8fea64fb533f42b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1233692002419998761, guid: 08ff9deaaae6c4a3d8fea64fb533f42b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 08ff9deaaae6c4a3d8fea64fb533f42b, type: 3}

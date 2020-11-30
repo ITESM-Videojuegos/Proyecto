@@ -3,11 +3,12 @@ using UnityEngine.SceneManagement;
 
 public class Counter : MonoBehaviour
 {
-    public int enemiesKilled = 0;
+    [HideInInspector] public int enemiesKilled = 0;
+    [SerializeField] private int enemiesToKill;
 
     void Update()
     {
-        if(enemiesKilled >= 3)
+        if(enemiesKilled >= enemiesToKill)
         {
             SceneManager.LoadScene("Winner");
             print("Ganaste chavo");

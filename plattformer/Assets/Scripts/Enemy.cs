@@ -9,12 +9,15 @@ public class Enemy : MonoBehaviour
     private Animator anim;
     private Rigidbody2D rb;
     private Counter counter;
+    //private Renderer rend;
+    public Color color = Color.white;
 
 
     void Start()
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        //rend = GetComponent<Renderer>();
         try
         {
             counter = GameObject.FindGameObjectWithTag("Counter").GetComponent<Counter>();
@@ -34,7 +37,11 @@ public class Enemy : MonoBehaviour
             anim.SetTrigger("Death");
             rb.velocity = Vector2.zero;
         }
-            
+        else if (health <= 50)
+        {
+            //rend.material.color = color;
+        }
+
     }
 
     private void Die()
@@ -50,5 +57,15 @@ public class Enemy : MonoBehaviour
             counter.enemiesKilled++;
             print("Enemies Killed: " + counter.enemiesKilled);
         }
+    }
+
+    public int GetHealth()
+    {
+        return this.health;
+    }
+
+    public void SetHealth(int newHealth)
+    {
+        this.health = newHealth;
     }
 }

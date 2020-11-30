@@ -1,22 +1,17 @@
 ﻿<Properties StartupConfiguration="{961BF452-D211-3580-4EA8-3F2A3E916965}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Enemy.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/EnemyPathChange.cs">
     <Files>
       <File FileName="Assets/Scripts/Spawner.cs" Line="7" Column="34" />
-      <File FileName="Assets/Scripts/Counter.cs" Line="2" Column="35" />
-      <File FileName="Assets/Scripts/Menu.cs" Line="18" Column="9" />
-      <File FileName="Assets/Scripts/PlayerPos.cs" Line="6" Column="5" />
-      <File FileName="Assets/Scripts/Enemy.cs" Line="10" Column="15" />
+      <File FileName="Assets/Scripts/Enemy.cs" Line="63" Column="6" />
+      <File FileName="Assets/Scripts/EnemyPathChange.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="plattformer" expanded="True">
             <Node name="Assets" expanded="True">
-              <Node name="AstarPathfindingProject" expanded="True">
-                <Node name="Behaviors" expanded="True" />
-              </Node>
               <Node name="Scripts" expanded="True">
-                <Node name="Enemy.cs" selected="True" />
+                <Node name="EnemyPathChange.cs" selected="True" />
               </Node>
             </Node>
           </Node>
@@ -26,7 +21,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="2da4100d-e86f-427f-b886-f972c4998e1f" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="b795fa41-0f5d-4d12-ad9b-fb24f440a20a" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

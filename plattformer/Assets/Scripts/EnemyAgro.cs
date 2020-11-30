@@ -14,6 +14,9 @@ public class EnemyAgro : MonoBehaviour
     [SerializeField]
     float agroRange;
 
+    private Renderer rend;
+    public Color color = Color.white;
+
     Rigidbody2D rb2d;
 
     EnemyFire ef = new EnemyFire();
@@ -22,19 +25,16 @@ public class EnemyAgro : MonoBehaviour
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
-    // Update is called once per frame
     void Update()
     {
         float disToPlayer = Vector2.Distance(transform.position, player.position);
-        print(disToPlayer); 
 
         if (disToPlayer < agroRange)
         {
-            
             ShootPlayer();
-
         }
         else
         {

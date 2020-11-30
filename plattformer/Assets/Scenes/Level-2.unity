@@ -580,6 +580,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lastCheckPoint: {x: -6, y: -3.9}
+  startCheckPoint: {x: 0, y: 0}
   playerLifes: 2
 --- !u!4 &156627027
 Transform:
@@ -30883,7 +30884,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &534496155
 Transform:
   m_ObjectHideFlags: 0
@@ -51081,7 +51082,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1720543178
 Transform:
   m_ObjectHideFlags: 0
@@ -51703,7 +51704,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1841338057
 Transform:
   m_ObjectHideFlags: 0
