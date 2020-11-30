@@ -6,9 +6,10 @@ public class GameMaster : MonoBehaviour
 
     private static GameMaster instance;
     public Vector2 lastCheckPoint;
+    public Vector2 startCheckPoint;
     public int playerLifes;
 
-    // Start is called before the first frame update
+    
     private void Awake()
     {
         if (instance == null)
@@ -20,6 +21,8 @@ public class GameMaster : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        startCheckPoint = new Vector2(-7.5f, -1f);
     }
 
 

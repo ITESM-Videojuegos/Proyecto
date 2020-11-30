@@ -16,6 +16,7 @@ public class ToLevelThree : MonoBehaviour
         {
             SceneManager.LoadScene("demo");
             gm.lastCheckPoint = GameObject.FindWithTag("StartPos").transform.position;
+            print(gm);
         }
             
     }

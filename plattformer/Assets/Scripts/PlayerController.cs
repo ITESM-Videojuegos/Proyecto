@@ -84,6 +84,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
+                state = State.idle;
                 canClimb = false;
                 Climb(canClimb);
             }
